@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  h2 Tracking Modules
+  .row
+    .col-lg-12
+      .col-md-6
+        .leftModuleX
+          h3.sectionTitle Add a new number
+          small 
+            p.
+              Create a new lead source by purchasing a new phone number.
+              Area code is optional
+
+          form(name='searchNumbers', action='/available-numbers', method='GET')
+            .form-group
+              label(for='areaCode') Area code
+              input.form-control(type='number', name='areaCode')
+              
+            input.btn.btn-sm.btn-primary(type='submit', value='Search')
+
+          <hr />
+
+          h3.sectionTitle Lead sources
+            
+          a.btn.btn-sm.btn-danger(
+            href='https://www.twilio.com/user/account/apps/' + '#{appSid}'
+            target='_blank') App configuration
+          br 
+          br   
+          table.table#leadSources
+            thead
+              tr.trClass
+                th Phone Number
+                th Description
+                th Forwarding Number
+                th
+            tbody
+              each leadSource in leadSources
+                tr
+                  td #{leadSource.number}
+                  td #{leadSource.description}
+                  td #{leadSource.forwardingNumber}
+                  td
+                    a.btn.btn-xs.btn-warning(
+                      href= '/lead-source/' + '#{leadSource._id}' + '/edit') Edit     
+
+      .col-md-6
+        h3.sectionTitle Calls by lead source
+        small
+          p The number of incoming calls each lead source has received
+          a(href='/leads/') 
+            canvas#pie-by-lead-source              
+      .col-md-6
+      h3.sectionTitle Calls by city
+      small
+        p.
+          The number of incoming calls from different cities, based on Twilio call
+          data
+      a(href='/leads/')             
+        canvas#pie-by-city
+
+block scripts
+  script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js')
+  script(src='js/pieCharts.js')

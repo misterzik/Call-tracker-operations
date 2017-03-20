@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 Customers Leads
+  
+  table.table#leadSources
+    thead
+      tr
+        th Caller Number
+          th Call Sid
+            th leadSource
+              th City
+                th State
+                  th Caller Name
+        
+    tbody
+      each leadSource in existingLeads
+        tr
+          td #{leadSource.callerNumber}
+            td #{leadSource.callSid}
+              td #{leadSource.leadSource}
+                td #{leadSource.city}
+                  td #{leadSource.state}
+                    td #{leadSource.callerName}
+  
+                  
+block scripts
+  script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js')

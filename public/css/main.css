@@ -1,0 +1,40 @@
+#main {
+    padding-top:70px;
+}
+
+.navbar-nav .navbar-right ul, li {
+  list-style-type: none!important;
+  background: rgba(113, 113, 113, 0.1);
+  color: #5a5a5a;
+  padding: 16px;
+}
+/**
+ *
+ * Modules - MisterZik
+ *
+ */
+ .leftModule {
+   background: rgba(113, 113, 113, 0.1);
+   color: #5a5a5a;
+   border-radius: 17px;
+ }
+
+ .sectionTitle {
+    color: #822626;
+    font-family: monospace;
+}
+
+.trClass {
+    background: #f5f5f5;
+}
+
+footer {
+    border-top:1px solid #eee;
+    padding:20px;
+    margin:20px;
+    text-align:center;
+}
+
+footer i {
+    color:red;
+}

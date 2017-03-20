@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .row
+    .col-lg-6
+      table.table
+        thead
+          tr
+            th Phone number
+            th State
+            th
+        tbody
+          each number in availableNumbers
+            tr
+              td= number.friendlyName
+              td= number.region
+              td
+                form(name='purchaseNumber', action='/lead-source', method='POST')
+                  input(type='hidden', name='phoneNumber', value="#{number.phone_number}")
+                  input(type='hidden', name='_csrf', value="#{csrftoken}")
+                  input(type='submit', value='Purchase').btn.btn-sm.btn-primary
+    
+    .col-lg-6
+      h3 Add a new number
+      p.
+        Create a new lead source by purchasing a new phone number.
+        Area code is optional
+
+      form(name='searchNumbers', action='/available-numbers', method='GET')
+        .form-group
+          label(for='areaCode') Area code
+          input.form-control(type='number', name='areaCode')
+              
+          input.btn.btn-sm.btn-primary(type='submit', value='Search')  
